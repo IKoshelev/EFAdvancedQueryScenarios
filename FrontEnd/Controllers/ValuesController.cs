@@ -1,5 +1,4 @@
-﻿using EFDataContext;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -14,10 +13,7 @@ namespace FrontEnd.Controllers
         // GET api/values
         public IEnumerable<string> Get()
         {
-            using (var context = new AdventureWorksDataContext())
-            {
-                return context.ProductModels.Select(x => x.Name).ToArray();
-            }
+            return new[] { "str1", "str2" };
         }
 
         // GET api/values/5
