@@ -16,8 +16,8 @@ namespace FrontEnd.Controllers
             _productsService = productsService;
         }
 
-        // GET api/values
-        public ProductGridRow[] Get([FromUri]string query)
+        [HttpGet]
+        public ProductGridRow[] GetProducts([FromUri]string query = null)
         {
             var req = new GridRequestWithAdditionalPayload<TextSearchPayload>()
             {
@@ -27,27 +27,6 @@ namespace FrontEnd.Controllers
                 }
             };
             return _productsService.GetProductsForGrid(req);
-        }
-
-        // GET api/values/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/values
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
         }
     }
 }

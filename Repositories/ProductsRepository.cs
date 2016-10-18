@@ -63,7 +63,9 @@ namespace Repositories
             bool needsTextSearch = string.IsNullOrWhiteSpace(textSearch) == false;
 
             Expression<Func<Product, bool>> textFilter = (p) => true;
-            var descriptions = DataContext.ProductModels.Where(x => false).Select(x => new ModelWithDescriptions());
+            var descriptions = DataContext
+                .ProductModels.Where(x => false)
+                .Select(x => new ModelWithDescriptions() { Model = x, Descriptions = x.ProductModelProductDescriptionCultures.Select(y => y.ProductDescription)});
             if (needsTextSearch)
             {
                 textFilter = (p) => p.Name.Contains(textSearch)
@@ -91,7 +93,8 @@ namespace Repositories
                             ProductId = product.ProductId,
                             Name = product.Name,
                             ProductNumber = product.ProductNumber,
-                            ModelName = model != null ? model.Name : ""
+                            ModelName = model != null ? model.Name : "",
+                            Descriptions = matchingDescriptions.SelectMany(x => x.Descriptions.Select(y => y.Description))
                         };
 
             return query;
