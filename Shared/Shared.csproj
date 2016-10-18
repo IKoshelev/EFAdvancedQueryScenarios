@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dtos\BusinessEntityWithContactsDto.cs" />
     <Compile Include="Dtos\DocumentShortInfo.cs" />
     <Compile Include="Dtos\ProductGridRow.cs" />
     <Compile Include="Dtos\ProductModelOrderStatisticsDto.cs" />

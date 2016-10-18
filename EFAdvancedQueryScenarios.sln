@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App", "App\App.csproj", "{83DD8F99-65A8-45AA-9317-71DB31EFBA51}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositories.Test", "Repisitories.TEst\Repositories.Test.csproj", "{DD0FDE2E-EAF6-4C99-A598-C8744AF86272}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{83DD8F99-65A8-45AA-9317-71DB31EFBA51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83DD8F99-65A8-45AA-9317-71DB31EFBA51}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83DD8F99-65A8-45AA-9317-71DB31EFBA51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD0FDE2E-EAF6-4C99-A598-C8744AF86272}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD0FDE2E-EAF6-4C99-A598-C8744AF86272}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD0FDE2E-EAF6-4C99-A598-C8744AF86272}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD0FDE2E-EAF6-4C99-A598-C8744AF86272}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,5 +63,6 @@ Global
 		{333F6F15-984F-4CA9-862A-6E6585349CE5} = {59ACCE05-5573-44B5-BB6F-63211B3D857E}
 		{9FB1161A-A033-47E6-9749-89636A76AD21} = {5ABFF21C-150D-497F-9BCD-121476D8EB11}
 		{83DD8F99-65A8-45AA-9317-71DB31EFBA51} = {37DF5F92-BC4D-4CCC-B67D-E07524AE1018}
+		{DD0FDE2E-EAF6-4C99-A598-C8744AF86272} = {D4FABF24-CE59-4FD3-B02D-13C2F18C353F}
 	EndGlobalSection
 EndGlobal

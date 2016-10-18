@@ -12,27 +12,13 @@ namespace App
         {
             var context = new EFDataContext.AdventureWorksDataContext();
 
-            var repo = new Repositories.ProductsRepository(context);
+            var productRepo = new Repositories.ProductsRepository(context);
 
-            var srv = new Services.ProductsService(repo);
+            var businessEntityRepio = new Repositories.BusinessEntityRepository(context);
 
-            var test = repo.GetWorkOrderSummaries().ToArray();
+            var productSrv = new Services.ProductsService(productRepo);
 
-            var req = new GridRequestWithAdditionalPayload<TextSearchPayload>()
-            {
-                Filter = new GridRequestFilter[]
-                {
-                    new GridRequestFilter()
-                    {
-                        PropName = "ModelName",
-                        Operand = "Contains",
-                        JsonValue = "'Road'"
-                    }
-                },
-                Payload = new TextSearchPayload()
-            };
-
-            var result = srv.GetProductsForGrid(req).ToArray();
+            var result = businessEntityRepio.GetBusinessEntityes().ToArray();
 
         }
     }
