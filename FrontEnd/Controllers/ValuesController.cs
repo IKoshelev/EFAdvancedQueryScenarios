@@ -21,9 +21,21 @@ namespace FrontEnd.Controllers
         {
             var req = new GridRequestWithAdditionalPayload<TextSearchPayload>()
             {
+                Sort = new GridRequestSort[]
+                {
+                    new GridRequestSort()
+                    {
+                        PropName = "ModelName"
+                    },
+                    new GridRequestSort()
+                    {
+                        PropName = "ProductNumber",
+                        IsDescending = true
+                    },
+                },
                 Payload = new TextSearchPayload()
                 {
-                    TextSearch = query
+                    TextSearch = "frame"
                 }
             };
             return _productsService.GetProductsForGrid(req);

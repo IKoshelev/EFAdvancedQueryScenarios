@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="Dtos\DocumentShortInfo.cs" />
     <Compile Include="Dtos\ProductGridRow.cs" />
+    <Compile Include="Dtos\ProductModelOrderStatisticsDto.cs" />
+    <Compile Include="Dtos\WorkOrderSummaryDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
