@@ -3,60 +3,47 @@ using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 
-namespace Repositories.TEst
+namespace Repositories.Test
 {
     [TestClass]
-    public class BusinessEntitesRepositoryTest
+    public class BusinessEntitesRepositoryTest:  DataTestBase
     {
         [TestMethod]
         public void GetBusinessEntityes_Test()
         {
-            var fakeContext = new FakeAdventureWorksDataContext()
+            var context = Context();
+            context.BusinessEntities = Set(new BusinessEntity
             {
-                BusinessEntities = new FakeDbSet<BusinessEntity>()
-                {
-                    new BusinessEntity
-                    {
-                        BusinessEntityId = 2
-                    }
-                },
-                People = new FakeDbSet<Person>()
-                {
-                    new Person()
-                    {
-                        BusinessEntityId = 2,
-                        FirstName = "FIRSTNAME",
-                        LastName = "LASTNAME"
-                    }
-                },
-                BusinessEntityAddresses = new FakeDbSet<BusinessEntityAddress>()
-                {
-                    new BusinessEntityAddress()
-                    {
-                        BusinessEntityId = 2,
-                        AddressId = 3
-                    }
-                },
-                Addresses = new FakeDbSet<Address>()
-                {
-                    new Address()
-                    {
-                        AddressId = 3,
-                        City = "CITY",
-                        StateProvinceId = 4,
-                    }
-                },
-                StateProvinces = new FakeDbSet<StateProvince>()
-                {
-                    new StateProvince()
-                    {
-                        StateProvinceId = 4,
-                        Name = "PROVINCE"
-                    }
-                }
-            };
+                BusinessEntityId = 2
+            });
 
-           var repo = new BusinessEntityRepository(fakeContext);
+            context.People = Set(new Person()
+            {
+                BusinessEntityId = 2,
+                FirstName = "FIRSTNAME",
+                LastName = "LASTNAME"
+            });
+
+            context.BusinessEntityAddresses = Set(new BusinessEntityAddress()
+            {
+                BusinessEntityId = 2,
+                AddressId = 3
+            });
+
+            context.Addresses = Set(new Address()
+            {
+                AddressId = 3,
+                City = "CITY",
+                StateProvinceId = 4,
+            });
+
+            context.StateProvinces = Set(new StateProvince()
+            {
+                StateProvinceId = 4,
+                Name = "PROVINCE"
+            });
+                            
+           var repo = new BusinessEntityRepository(context);
 
            var result = repo.GetBusinessEntityes().ToArray();
 

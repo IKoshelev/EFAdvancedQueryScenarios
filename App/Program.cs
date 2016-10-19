@@ -12,6 +12,8 @@ namespace App
         {
             var context = new EFDataContext.AdventureWorksDataContext();
 
+            context.Database.Log = Console.Write;
+
             var productRepo = new Repositories.ProductsRepository(context);
 
             var businessEntityRepio = new Repositories.BusinessEntityRepository(context);
