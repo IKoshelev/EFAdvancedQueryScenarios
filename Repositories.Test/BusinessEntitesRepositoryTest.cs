@@ -45,7 +45,7 @@ namespace Repositories.Test
                             
            var repo = new BusinessEntityRepository(context);
 
-           var result = repo.GetBusinessEntityes().ToArray();
+           var result = repo.GetBusinessEntities().ToArray();
 
             Assert.IsTrue(result.Count() == 1);
             var ent = result[0];

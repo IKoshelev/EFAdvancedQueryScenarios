@@ -20,7 +20,7 @@ namespace Repositories.Test.Util.MethodCallReplacement
         public static int? DateDiffEquivalent(DateTime? dateLeft, DateTime? dateRight)
         {
             return dateLeft.HasValue && dateRight.HasValue
-                    ? (int?)(dateLeft.Value - dateRight.Value).TotalDays
+                    ? (int?)(dateRight.Value - dateLeft.Value).TotalDays
                     : (int?) null;
         } 
 

@@ -58,6 +58,9 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\C3FunctionWithLINQKit.cs" />
+    <Compile Include="Queries\B1DataGridRequests.cs" />
+    <Compile Include="Queries\A1QueryCombination.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

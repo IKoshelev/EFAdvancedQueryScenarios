@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using App.Queries;
+using Newtonsoft.Json;
 using Services.Model;
 using System;
 using System.Linq;
@@ -20,8 +21,15 @@ namespace App
 
             var productSrv = new Services.ProductsService(productRepo);
 
-            var result = businessEntityRepo.GetBusinessEntityes().ToArray();
+            A1QueryCombination.Query1(productRepo);
+            A1QueryCombination.Query2(productRepo);
 
+            B1DataGridRequests.Query1(productSrv);
+            B1DataGridRequests.Query2(productSrv);
+            B1DataGridRequests.Query3(productSrv);
+            B1DataGridRequests.Query4(productSrv);
+
+            C3FunctionWithLINQKit.Query1(businessEntityRepo);
         }
     }
 }

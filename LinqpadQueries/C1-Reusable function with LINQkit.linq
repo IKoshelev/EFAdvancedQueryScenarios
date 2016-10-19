@@ -30,7 +30,7 @@ void Main()
 
             var businessEntityRepo = new Repositories.BusinessEntityRepository(DataContext);
 
-            var result = businessEntityRepo.GetBusinessEntityes().Dump();
+            var result = businessEntityRepo.GetBusinessEntities().Dump();
 }
 
 // Define other methods and classes here

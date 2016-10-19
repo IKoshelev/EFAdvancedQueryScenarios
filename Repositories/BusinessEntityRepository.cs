@@ -12,7 +12,7 @@ namespace Repositories
 {
     public interface IBusinessEntityRepository
     {
-        IQueryable<BusinessEntityWithContactsDto> GetBusinessEntityes();
+        IQueryable<BusinessEntityWithContactsDto> GetBusinessEntities();
 
     }
 
@@ -24,7 +24,7 @@ namespace Repositories
 
         }
 
-        public IQueryable<BusinessEntityWithContactsDto> GetBusinessEntityes()
+        public IQueryable<BusinessEntityWithContactsDto> GetBusinessEntities()
         {
             var query = DataContext.BusinessEntities.AsExpandable()
                 .Select(x => new BusinessEntityWithContactsDto
