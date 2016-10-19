@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App", "App\App.csproj", "{83DD8F99-65A8-45AA-9317-71DB31EFBA51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositories.Test", "Repisitories.TEst\Repositories.Test.csproj", "{DD0FDE2E-EAF6-4C99-A598-C8744AF86272}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositories.Test", "Repositories.Test\Repositories.Test.csproj", "{DD0FDE2E-EAF6-4C99-A598-C8744AF86272}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

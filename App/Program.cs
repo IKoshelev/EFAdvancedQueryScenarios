@@ -16,11 +16,11 @@ namespace App
 
             var productRepo = new Repositories.ProductsRepository(context);
 
-            var businessEntityRepio = new Repositories.BusinessEntityRepository(context);
+            var businessEntityRepo = new Repositories.BusinessEntityRepository(context);
 
             var productSrv = new Services.ProductsService(productRepo);
 
-            var result = businessEntityRepio.GetBusinessEntityes().ToArray();
+            var result = businessEntityRepo.GetBusinessEntityes().ToArray();
 
         }
     }
