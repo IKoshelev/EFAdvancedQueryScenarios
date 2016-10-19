@@ -29,7 +29,7 @@ namespace App
             B1DataGridRequests.Query3(productSrv);
             B1DataGridRequests.Query4(productSrv);
 
-            C3FunctionWithLINQKit.Query1(businessEntityRepo);
+            C1FunctionsWithLINQKit.Query1(businessEntityRepo);
         }
     }
 }

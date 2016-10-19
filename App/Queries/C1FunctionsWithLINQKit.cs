@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 
 namespace App.Queries
 {
-    public static class C3FunctionWithLINQKit
+    public static class C1FunctionsWithLINQKit
     {
         public static void Query1(IBusinessEntityRepository repo)
         {
             var result1 = repo.GetBusinessEntities().ToArray();
-
-
+        }
     }
 }
