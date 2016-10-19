@@ -2,6 +2,7 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
+using Repositories.Test.Util;
 
 namespace Repositories.Test
 {
@@ -57,9 +58,23 @@ namespace Repositories.Test
 
             var repo = new ProductsRepository(context);
 
-            var result = repo.GetWorkOrderSummaries().ToArray();
+            var result = repo
+                .GetWorkOrderSummaries()
+                .FixDbFunctionCalls()
+                .ToArray();
 
-
+            Assert.IsTrue(result.Count() == 1);
+            var item = result[0];
+            Assert.IsTrue(item.ModelName == "MODELNAME");
+            Assert.IsTrue(item.ProductModelId == 2);
+            Assert.IsTrue(item.RoutingsCount == 2);
+            Assert.IsTrue(item.DurationDays == 5);
+            Assert.IsTrue(item.ProductId == 3);
+            Assert.IsTrue(item.OrderId == 4);
+            Assert.IsTrue(item.ProductName == "PRODUCTNAAME");
+            Assert.IsTrue(item.Locations.Count() == 2);
+            Assert.IsTrue(item.Locations.ElementAt(0) == "LOCATION5");
+            Assert.IsTrue(item.Locations.ElementAt(1) == "LOCATION6");
         }
     }
 }
