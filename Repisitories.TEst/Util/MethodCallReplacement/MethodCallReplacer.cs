@@ -13,7 +13,7 @@ namespace Repositories.Test.Util.MethodCallReplacement
         private MethodReplacement[] AvailableReplacements { get; set; } =
             new MethodReplacement[]
             {
-                new DateDiffReplacement()
+                new DiffDaysReplacement()
             };
 
         protected override Expression VisitMethodCall(MethodCallExpression node)
@@ -30,8 +30,6 @@ namespace Repositories.Test.Util.MethodCallReplacement
 
             return newMethodCall;
         }
-
-
     }
 
     public abstract class MethodReplacement

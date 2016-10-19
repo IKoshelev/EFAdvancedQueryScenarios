@@ -63,7 +63,7 @@
     <Compile Include="DataTestBase.cs" />
     <Compile Include="ProductRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Util\MethodCallReplacement\DateDiffReplacement.cs" />
+    <Compile Include="Util\MethodCallReplacement\DiffDaysReplacement.cs" />
     <Compile Include="Util\MethodCallReplacement\MethodCallReplacer.cs" />
     <Compile Include="Util\QueryableExtensions.cs" />
   </ItemGroup>

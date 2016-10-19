@@ -73,7 +73,7 @@ namespace Repositories
                                 on workOrder.WorkOrderId equals workOrderRouting.WorkOrderId
                                 into routingsPerOrder
 
-                         let duration = DbFunctions.DiffDays(workOrder.StartDate, workOrder.EndDate)
+                         let duration = DbFunctions.DiffDays(workOrder.EndDate, workOrder.StartDate)
 
                          orderby duration descending
 

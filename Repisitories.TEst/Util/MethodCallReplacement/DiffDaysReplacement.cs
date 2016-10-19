@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Repositories.Test.Util.MethodCallReplacement
 {
-    class DateDiffReplacement : MethodReplacement
+    class DiffDaysReplacement : MethodReplacement
     {
-        public DateDiffReplacement()
+        public DiffDaysReplacement()
         {
             MethodToReplace = typeof(DbFunctions).GetMethod(
                 nameof(DbFunctions.DiffDays), new[] { typeof(DateTime?), typeof(DateTime?) });
@@ -20,7 +20,7 @@ namespace Repositories.Test.Util.MethodCallReplacement
         public static int? DateDiffEquivalent(DateTime? dateLeft, DateTime? dateRight)
         {
             return dateLeft.HasValue && dateRight.HasValue
-                    ? (int?)(dateRight.Value - dateLeft.Value).TotalDays
+                    ? (int?)(dateLeft.Value - dateRight.Value).TotalDays
                     : (int?) null;
         } 
 
