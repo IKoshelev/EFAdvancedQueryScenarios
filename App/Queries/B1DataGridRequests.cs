@@ -1,8 +1,10 @@
-﻿using Repositories;
+﻿using App.Extensions;
+using Repositories;
 using Services;
 using Services.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +13,7 @@ namespace App.Queries
 {
     public static class B1DataGridRequests
     {
-        public static void Query1(IProductsService srv)
+        public static void Query1(Database database, IProductsService srv)
         {
             var req = new GridRequestWithAdditionalPayload<TextSearchPayload>()
             {
@@ -36,10 +38,14 @@ namespace App.Queries
                 }
             };
 
-            var result1 = srv.GetProductsForGrid(req).ToArray();
+            database.LogSQLToFile("B2DataGridRequests-query1-log.html", () =>
+            {
+                var result1 = srv.GetProductsForGrid(req).ToArray();
+                result1.SaveAsHtmlTableFile("B2DataGridRequests-query1-result.html");
+            });
         }
 
-        public static void Query2(IProductsService srv)
+        public static void Query2(Database database, IProductsService srv)
         {
             var req = new GridRequestWithAdditionalPayload<TextSearchPayload>()
             {
@@ -55,10 +61,14 @@ namespace App.Queries
                 Payload = new TextSearchPayload()
             };
 
-            var result1 = srv.GetProductsForGrid(req).ToArray();
+            database.LogSQLToFile("B2DataGridRequests-query2-log.html", () =>
+            {
+                var result1 = srv.GetProductsForGrid(req).ToArray();
+                result1.SaveAsHtmlTableFile("B2DataGridRequests-query2-result.html");
+            });
         }
 
-        public static void Query3(IProductsService srv)
+        public static void Query3(Database database, IProductsService srv)
         {
             var req = new GridRequestWithAdditionalPayload<TextSearchPayload>()
             {
@@ -74,10 +84,14 @@ namespace App.Queries
                 Payload = new TextSearchPayload()
             };
 
-            var result1 = srv.GetProductsForGrid(req).ToArray();
+            database.LogSQLToFile("B2DataGridRequests-query3-log.html", () =>
+            {
+                var result1 = srv.GetProductsForGrid(req).ToArray();
+                result1.SaveAsHtmlTableFile("B2DataGridRequests-query3-result.html");
+            });
         }
 
-        public static void Query4(IProductsService srv)
+        public static void Query4(Database database, IProductsService srv)
         {
             var req = new GridRequestWithAdditionalPayload<TextSearchPayload>()
             {
@@ -106,9 +120,11 @@ namespace App.Queries
                 }
             };
 
-            var result1 = srv.GetProductsForGrid(req).ToArray();
+            database.LogSQLToFile("B2DataGridRequests-query4-log.html", () =>
+            {
+                var result1 = srv.GetProductsForGrid(req).ToArray();
+                result1.SaveAsHtmlTableFile("B2DataGridRequests-query4-result.html");
+            });
         }
-
-
     }
 }

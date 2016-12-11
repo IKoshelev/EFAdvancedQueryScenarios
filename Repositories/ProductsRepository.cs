@@ -15,6 +15,7 @@ namespace Repositories
         IQueryable<ModelWithDescriptions> GetProductModelsTextSearch(string textSearch);
         IQueryable<ProductModelOrderStatisticsDto> GetProductModelOrderStats();
         IQueryable<WorkOrderSummaryDto> GetWorkOrderSummaries();
+        IQueryable<FreshProductWithBadReviewReportRow> GetFreshProductsWithBadReviews();
     }
 
     public class ModelWithDescriptions
@@ -123,7 +124,7 @@ namespace Repositories
             Expression<Func<Product, bool>> textFilter = (p) => true;
             var descriptions = DataContext
                 .ProductModels.Where(x => false)
-                .Select(x => new ModelWithDescriptions() { Model = x, Descriptions = x.ProductModelProductDescriptionCultures.Select(y => y.ProductDescription)});
+                .Select(x => new ModelWithDescriptions() { Model = x, Descriptions = x.ProductModelProductDescriptionCultures.Select(y => y.ProductDescription) });
             if (needsTextSearch)
             {
                 textFilter = (p) => p.Name.Contains(textSearch)
@@ -142,7 +143,7 @@ namespace Repositories
                         let matchingDescriptions = descriptions.Where(x => x.Model.ProductModelId == product.ProductModelId)
 
                         where textFilter.Invoke(product)
-                                || matchingDescriptions.Any()                        
+                                || matchingDescriptions.Any()
 
                         select new ProductGridRow
                         {
@@ -154,6 +155,80 @@ namespace Repositories
                         };
 
             return query;
+        }
+
+        public IQueryable<FreshProductWithBadReviewReportRow> GetFreshProductsWithBadReviews()
+        {
+            IQueryable<Product> freshProducts = GetFreshProducts();
+            IQueryable<ProductModel> freshModels = GetFreshModels(DateTime.Today.AddYears(-5));
+            IQueryable<ProductIdAverageReviewScore> averageReviewScores = GetProductAverageReviewScores();
+            IQueryable<ProductReview> badRewies = GetBadReviews();
+            IQueryable<ProductSubcategory> fullBikeSubcategories = GetFullBikeSubcategories();
+
+            var query = from product in freshProducts
+                        join model in freshModels
+                            on product.ProductModelId equals model.ProductModelId
+
+                        let averageReviewScore = averageReviewScores
+                                                    .Where(x => x.ProductId == product.ProductId)
+                                                    .Select(x => x.AverageReviewScore)
+                                                    .FirstOrDefault()
+
+                        let isAverageReviewScroePositive = averageReviewScore > 2.5
+
+                        where badRewies.Select(r => r.ProductId).Contains(product.ProductId)
+
+                        select new FreshProductWithBadReviewReportRow
+                        {
+                            ProductId = product.ProductId,
+                            ProductName = product.Name,
+                            ProductModel = model.CatalogDescription,
+                            IsFullyAsembledBike = fullBikeSubcategories
+                                                    .Any(sc => sc.ProductSubcategoryId == product.ProductSubcategoryId),
+                            AverageReviewScore = averageReviewScore,
+                            IsAverageReviewScroePositive = isAverageReviewScroePositive
+
+                        };
+
+            return query;
+        }
+
+        private IQueryable<Product> GetFreshProducts()
+        {
+            var freshnessCutoffDate = DateTime.Today.AddYears(-3);
+            return DataContext.Products.Where(x => x.ModifiedDate > freshnessCutoffDate);
+        }
+
+        private IQueryable<ProductModel> GetFreshModels(DateTime modifiedAfter)
+        {
+            return DataContext.ProductModels.Where(x => x.ModifiedDate > modifiedAfter);
+        }
+
+        private IQueryable<ProductReview> GetBadReviews()
+        {
+            return DataContext.ProductReviews.Where(x => x.Rating <= 3);
+        }
+
+        private class ProductIdAverageReviewScore
+        {
+            public int ProductId { get; set; }
+            public double AverageReviewScore { get; set; }
+        }
+        private IQueryable<ProductIdAverageReviewScore> GetProductAverageReviewScores()
+        {
+            return DataContext
+                .ProductReviews
+                .GroupBy(r => r.ProductId)
+                .Select(rg => new ProductIdAverageReviewScore
+                    {
+                        ProductId = rg.Key,
+                        AverageReviewScore = rg.Select(x => x.Rating).Average()
+                    });
+        }
+      
+        private IQueryable<ProductSubcategory> GetFullBikeSubcategories()
+        {
+            return DataContext.ProductSubcategories.Where(c => c.ProductCategoryId == 1);
         }
     }
 }

@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Dtos\BusinessEntityWithContactsDto.cs" />
     <Compile Include="Dtos\DocumentShortInfo.cs" />
+    <Compile Include="Dtos\FreshProductWithBadReviewReportRow.cs" />
     <Compile Include="Dtos\ProductGridRow.cs" />
     <Compile Include="Dtos\ProductModelOrderStatisticsDto.cs" />
     <Compile Include="Dtos\WorkOrderSummaryDto.cs" />

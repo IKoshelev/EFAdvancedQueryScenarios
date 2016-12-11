@@ -36,7 +36,9 @@ namespace Repositories
                             .Select(p => p.FirstName + " " + p.LastName)
                             .FirstOrDefault(),
 
-                    Addresses = AddressSubqueries.GetAddressesByBusinessEntityId.Invoke(DataContext, x.BusinessEntityId)
+                    Addresses = AddressSubqueries
+                                    .GetAddressesByBusinessEntityId
+                                    .Invoke(DataContext, x.BusinessEntityId)
                 });
 
             return query;
